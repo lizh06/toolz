@@ -4,9 +4,12 @@ from pathlib import Path
 import os
 import sys
 
-mylib = Path(__file__).parent.parent / 'lib'
-sys.path.insert(0, str(mylib))
-from utilz import activate
+dist = Path(__file__).parent.parent
+
+sys.path.insert(0, str(dist / 'lib'))
+from utilz import let, activate
+
+let(dist / 'venv', lambda v: activate(v) if v.exists() else None)
 
 temp = os.environ['temp']
 # activate(f'{temp}/venv/dev')#; import alembic

@@ -25,3 +25,4 @@ def activate(base):
             sys.path.remove(item)
     sys.path[:0] = new_sys_path
 
+let = lambda *va: va[-1](*va[:-1])
