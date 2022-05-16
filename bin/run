@@ -1,18 +1,13 @@
 #!/usr/bin/env python
-
 from pathlib import Path
 import os
 import sys
 
 dist = Path(__file__).parent.parent
-
 sys.path.insert(0, str(dist / 'lib'))
 from utilz import let, activate
 
 let(dist / 'venv', lambda v: activate(v) if v.exists() else None)
-
-temp = os.environ['temp']
-# activate(f'{temp}/venv/dev')#; import alembic
 
 def _command(name, conf, group=None):
     prog = ('' if group is None else f'{group} ') + name
@@ -51,6 +46,7 @@ argv = sys.argv[1:]
 gname = argv[0]
 cname = argv[1]
 
+temp = os.environ['temp']
 dirs = os.environ.get('RUN_PATH','').split(os.pathsep) + [temp]
 
 RESERVED = 'ctx'.split()
