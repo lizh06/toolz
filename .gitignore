@@ -11,6 +11,7 @@ dist/
 *.class
 
 # Compiled Python bytecode
+venv-local/
 *.py[cod]
 
 # Log files
