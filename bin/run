@@ -1,0 +1,137 @@
+#!/usr/bin/env python
+
+from pathlib import Path
+import os
+import sys
+
+mylib = Path(__file__).parent.parent / 'lib'
+sys.path.insert(0, str(mylib))
+from utilz import activate
+
+temp = os.environ['temp']
+# activate(f'{temp}/venv/dev')#; import alembic
+
+def _command(name, conf, group=None):
+    prog = ('' if group is None else f'{group} ') + name
+    if isinstance(conf, (list, tuple)):
+        conf = dict(arguments=conf)
+    desc = conf.get('description') or f'{prog} command'
+    parser = ArgumentParser(prog=prog, description=desc)
+    args = conf.get('arguments')
+    if args:
+        for a in args:
+            tags = a.pop('arg')
+            if isinstance(tags, str):
+                tags = tags.split()
+            parser.add_argument(*tags, **a)
+    # parser.print_help()
+    return parser, conf.get('code')
+
+def argparser(conf, cname, group):
+    for x, cinfo in conf.get('commands',{}).items():
+        if cname == x:
+            return _command(cname, cinfo, group)
+
+name_in = lambda n, d: f'run_{n}' in d or n in d
+
+def find_sym(mod, names):
+    for n in names:
+        s = getattr(mod, n, None)
+        if s: return s
+
+from inspect import signature, Parameter
+from argparse import ArgumentParser
+from importlib import import_module
+import yaml
+
+argv = sys.argv[1:]
+gname = argv[0]
+cname = argv[1]
+
+dirs = os.environ.get('RUN_PATH','').split(os.pathsep) + [temp]
+
+RESERVED = 'ctx'.split()
+
+def reflect(f):
+    s = signature(f)
+    params, letters = [], set()
+    for p in s.parameters.values():
+        if p.name in RESERVED: continue
+        annot = p.annotation
+        if annot is not Parameter.empty and isinstance(annot, type):
+            t = annot
+        else: t = str
+        n = p.name.replace('_', '-')
+        # params[n] = a = dict(t=t, alt=p.default)
+        a = {}; params.append(a)
+        c = n[0]
+        if c in letters:
+            a['arg'] = f'--{n}'
+        else:
+            a['arg'] = f'-{c} --{n}'
+            letters.add(c)
+        if t is bool:
+            a['action'] = 'store_true'
+        if p.default is not Parameter.empty:
+            a['default'] = p.default
+    return params
+
+mod, seen = None, set()
+for d in dirs:
+    d = d or os.getcwd()
+    if d in seen: continue
+    seen.add(d)
+    sys.path.insert(0, d)
+    try:
+        mod = import_module(f'cmds.{gname}')
+        break
+    except: pass
+    sys.path.pop(0)
+
+if mod is None:
+    print('no command group', gname)
+    sys.exit(-1)
+
+# if mod and name_in(cname, mod.__dict__): pass
+# else:
+#     print(f"command {gname}:{cname} doesn't exist")
+#     sys.exit(-1)
+
+meta = Path(mod.__file__).with_suffix('.yml')
+if 0 and meta.exists():
+    y = yaml.safe_load(open(meta).read())
+    par, code = argparser(y, cname, gname)
+    if code is None:
+        code = [f'run_{cname}', cname]
+    else: code = [code]
+    cmd = find_sym(mod, code)
+    if cmd is None:
+        raise Exception(f'cannot find command {cname}')
+else:
+    cmd = find_sym(mod, [f'run_{cname}', cname])
+    par, _ = _command(cname, dict(arguments=reflect(cmd)), gname)
+
+params = vars(par.parse_args(argv[2:]))
+cmd(**params)
+
+# TODO
+#   - task.yml override task.py
+#   - builtin commands
+#   - 'run {group}' show all commands in {group}
+#   - 'run' show all commands in all groups
+#   - 'run make {}' fallback to default action
+#   - multiple commands 'run -d a=1 task add :a'
+#   - command resolver
+#   - context builder
+#   - run V=http:// db= query select * from something
+#   - load first, assign to key, invoke command
+#   - def run_something(ctx, name, some)
+#   - reducer?
+#   - run state ctx {func}; then wait for command
+#   - convo channel + state, replies
+#
+#   x reflect on functions
+#
+# use cases:
+#   server monitor
+#   httpx
