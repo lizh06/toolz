@@ -25,4 +25,12 @@ def activate(base):
             sys.path.remove(item)
     sys.path[:0] = new_sys_path
 
+def activate_all(base):
+    for v in ['venv-local', 'venv']:
+        d = base / v
+        if d.exists():
+            activate(d)
+            return True
+    return False
+
 let = lambda *va: va[-1](*va[:-1])
