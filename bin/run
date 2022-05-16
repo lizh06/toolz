@@ -30,8 +30,6 @@ def argparser(conf, cname, group):
         if cname == x:
             return _command(cname, cinfo, group)
 
-name_in = lambda n, d: f'run_{n}' in d or n in d
-
 def find_sym(mod, names):
     for n in names:
         s = getattr(mod, n, None)
@@ -90,11 +88,6 @@ for d in dirs:
 if mod is None:
     print('no command group', gname)
     sys.exit(-1)
-
-# if mod and name_in(cname, mod.__dict__): pass
-# else:
-#     print(f"command {gname}:{cname} doesn't exist")
-#     sys.exit(-1)
 
 meta = Path(mod.__file__).with_suffix('.yml')
 if 0 and meta.exists():
