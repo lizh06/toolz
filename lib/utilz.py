@@ -1,3 +1,4 @@
+import contextlib
 from pathlib import Path
 import os
 import site
@@ -25,12 +26,18 @@ def activate(base):
             sys.path.remove(item)
     sys.path[:0] = new_sys_path
 
-def activate_all(base):
-    for v in ['venv-local', 'venv']:
+def activate_any(base, venvs):
+    for v in venvs:
         d = base / v
         if d.exists():
             activate(d)
-            return True
-    return False
+            return v
+
+@contextlib.contextmanager
+def sys_path_scope():
+    saved, changed = list(sys.path), []
+    yield changed
+    if changed:
+        sys.path[:] = saved
 
 let = lambda *va: va[-1](*va[:-1])

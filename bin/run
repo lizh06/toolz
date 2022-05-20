@@ -5,8 +5,8 @@ import sys
 
 dist = Path(__file__).parent.parent
 sys.path.insert(0, str(dist / 'lib'))
-from utilz import activate_all
-activate_all(dist)
+from utilz import activate_any
+activate_any(dist, ['venv-local', 'venv'])
 
 def _command(name, conf, group=None):
     prog = ('' if group is None else f'{group} ') + name
