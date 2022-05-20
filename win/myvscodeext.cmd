@@ -18,7 +18,6 @@ for %%e in (
 	annsk.alignment/0.3.0
 	tootone.org-mode/0.5.0
 
-	aaron-bond.better-comments/2.1.0
 	fabiospampinato.vscode-todo-plus/4.17.0
 
 	everettjf.filter-line/1.2.10
@@ -30,8 +29,6 @@ for %%e in (
 
 	johnpapa.vscode-peacock/3.7.2
 
-	wayou.vscode-todo-highlight/1.0.4
-	jgclark.vscode-todo-highlight/2.0.3
 	Gruntfuggly.todo-tree/0.0.162
 
 	patbenatar.advanced-new-file/1.2.0

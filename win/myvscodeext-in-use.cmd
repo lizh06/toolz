@@ -8,11 +8,14 @@ for %%e in (
 	vscode-icons-team.vscode-icons/11.8.0
 	vscodevim.vim/1.21.10
 
-	oderwat.indent-rainbow/7.5.0
+	aaron-bond.better-comments/2.1.0
 	shardulm94.trailing-spaces/0.3.1
+	oderwat.indent-rainbow/7.5.0
 
 	christian-kohler.path-intellisense/2.4.0
 
+	wayou.vscode-todo-highlight/1.0.4
+	rem jgclark.vscode-todo-highlight/2.0.3
 	ryanluker.vscode-coverage-gutters/2.6.0
 	mechatroner.rainbow-csv/1.7.0
 	IBM.output-colorizer/0.1.2
@@ -47,6 +50,7 @@ for %%e in (
 	samuelcolvin.jinjahtml/0.10.6
 	rem better jinja
 	zxh404.vscode-proto3/0.2.2
+	bungcip.better-toml/0.3.2
 	redhat.vscode-xml/0.18.1
 	redhat.vscode-yaml/1.2.0
 
