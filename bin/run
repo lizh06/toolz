@@ -114,14 +114,16 @@ cmd(**params)
 
 # TODO
 #   - support unnamed arg
-#   - task.yml override task.py
-#   - builtin commands
+#   - cannot callback to underscore args
 #   - extra pass for single letter args
 #   - support str|int|bool|List inference on signature
+#   - task.yml override task.py
+#   - 'well-known' args for group
 #   - 'run {group}' show all commands in {group}
 #   - 'run' show all commands in all groups
 #   - 'run make {}' fallback to default action
 #   - multiple commands 'run -d a=1 task add :a'
+#   - builtin commands
 #   - command resolver
 #   - context builder
 #   - run V=http:// db= query select * from something
