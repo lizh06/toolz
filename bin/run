@@ -66,6 +66,8 @@ def reflect(f):
             a['arg'] = n = n[1:]
             if n.endswith('s'):
                 a['nargs'] = '*'
+        elif len(n) == 1:
+            a['arg'] = f'-{n}'
         elif c in letters:
             a['arg'] = f'--{n}'
         else:
@@ -114,6 +116,7 @@ cmd(**params)
 #   - support unnamed arg
 #   - task.yml override task.py
 #   - builtin commands
+#   - extra pass for single letter args
 #   - support str|int|bool|List inference on signature
 #   - 'run {group}' show all commands in {group}
 #   - 'run' show all commands in all groups
