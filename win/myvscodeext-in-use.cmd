@@ -12,6 +12,9 @@ for %%e in (
 	shardulm94.trailing-spaces/0.3.1
 	oderwat.indent-rainbow/7.5.0
 
+	everettjf.filter-line/1.2.10
+	ryu1kn.partial-diff/1.4.0
+
 	christian-kohler.path-intellisense/2.4.0
 
 	wayou.vscode-todo-highlight/1.0.4
@@ -19,6 +22,10 @@ for %%e in (
 	ryanluker.vscode-coverage-gutters/2.6.0
 	mechatroner.rainbow-csv/1.7.0
 	IBM.output-colorizer/0.1.2
+
+	rem debug
+	hediet.debug-visualizer/2.0.6
+	hediet.vscode-drawio/1.4.0
 
 	rem markdown
 	yzhang.markdown-all-in-one/3.4.0

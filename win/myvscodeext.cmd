@@ -20,9 +20,7 @@ for %%e in (
 
 	fabiospampinato.vscode-todo-plus/4.17.0
 
-	everettjf.filter-line/1.2.10
 	adamwalzer.string-converter/0.1.2
-	ryu1kn.partial-diff/1.4.0
 	Tyriar.sort-lines/1.7.0
 
 	quicktype.quicktype/12.0.46
@@ -46,9 +44,6 @@ for %%e in (
 	pejmannikram.vscode-auto-scroll/1.0.3
 
 	rem jfrog.jfrog-vscode-extension/1.4.0
-
-	hediet.debug-visualizer/2.0.6
-	hediet.vscode-drawio/1.4.0
 
 	rem syntax
 	ivory-lab.jenkinsfile-support/0.4.4
