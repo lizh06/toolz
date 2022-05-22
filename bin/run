@@ -5,7 +5,7 @@ import sys
 
 dist = Path(__file__).parent.parent
 sys.path.insert(0, str(dist / 'lib'))
-from utilz import activate_any
+from utilz import activate_any, uniqa
 activate_any(dist, ['venv-local', 'venv'])
 
 def _command(name, conf, group=None):
@@ -43,8 +43,9 @@ argv = sys.argv[1:]
 gname = argv[0]
 cname = argv[1]
 
-temp = os.environ['temp']
-dirs = os.environ.get('RUN_PATH','').split(os.pathsep) + [temp]
+temp = os.environ.get('temp','')
+dirs = list(uniqa([''] + os.environ.get('RUN_PATH','').split(os.pathsep) + [temp]))
+# print(dirs); quit()
 
 RESERVED = 'ctx'.split()
 
@@ -61,7 +62,11 @@ def reflect(f):
         # params[n] = a = dict(t=t, alt=p.default)
         a = {}; params.append(a)
         c = n[0]
-        if c in letters:
+        if c == '-':
+            a['arg'] = n = n[1:]
+            if n.endswith('s'):
+                a['nargs'] = '*'
+        elif c in letters:
             a['arg'] = f'--{n}'
         else:
             a['arg'] = f'-{c} --{n}'
@@ -106,8 +111,10 @@ params = vars(par.parse_args(argv[2:]))
 cmd(**params)
 
 # TODO
+#   - support unnamed arg
 #   - task.yml override task.py
 #   - builtin commands
+#   - support str|int|bool|List inference on signature
 #   - 'run {group}' show all commands in {group}
 #   - 'run' show all commands in all groups
 #   - 'run make {}' fallback to default action

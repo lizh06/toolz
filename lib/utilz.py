@@ -41,3 +41,12 @@ def sys_path_scope():
         sys.path[:] = saved
 
 let = lambda *va: va[-1](*va[:-1])
+
+def uniqa(i, key=None):
+    key = key or repr
+    seen = set()
+    for x in i:
+        k = key(x)
+        if k not in seen:
+            seen.add(k)
+            yield x
