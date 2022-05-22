@@ -1,0 +1,61 @@
+ms-vscode.vs-keybindings
+vscode-icons-team.vscode-icons
+vscodevim.vim
+
+aaron-bond.better-comments
+shardulm94.trailing-spaces
+oderwat.indent-rainbow
+
+everettjf.filter-line
+ryu1kn.partial-diff
+
+christian-kohler.path-intellisense
+
+wayou.vscode-todo-highlight
+# jgclark.vscode-todo-highlight
+ryanluker.vscode-coverage-gutters
+mechatroner.rainbow-csv
+IBM.output-colorizer
+
+# debug
+hediet.debug-visualizer
+hediet.vscode-drawio
+
+# markdown
+yzhang.markdown-all-in-one
+shd101wyy.markdown-preview-enhanced
+bierner.markdown-preview-github-styles
+yzane.markdown-pdf
+
+# git
+ryu1kn.annotator
+mhutchie.git-graph
+eamodio.gitlens
+
+# workspace
+EditorConfig.EditorConfig
+
+# python
+ms-python.python
+ms-python.vscode-pylance
+ms-python.gather
+ms-toolsai.jupyter
+
+# golang & rust
+golang.go
+# ms-vscode.go
+rust-lang.rust
+
+# syntax
+wholroyd.jinja
+samuelcolvin.jinjahtml
+# better jinja
+zxh404.vscode-proto3
+bungcip.better-toml
+redhat.vscode-xml
+redhat.vscode-yaml
+
+# browser
+ritwickdey.LiveServer
+auchenberg.vscode-browser-preview
+msjsdiag.debugger-for-edge
