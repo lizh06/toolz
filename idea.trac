@@ -1,0 +1,69 @@
+asyncio-gevent
+
+stack of
+  skill / block / blade
+
+skill
+  state
+  dependencies
+  port / protocol
+  80: flask | tornado | fastapi
+
+
+ast -> local
+ast -> http_client
+  requests
+
+http_stub -> ast
+  flask blueprint
+  tornado handlers
+
+state.apps[]
+
+GET_APPS
+
+[COLL]
+  GET
+  INSERT
+  UPSERT
+
+[ITEM]
+  GET
+  DELETE
+
+INSERT
+UPDATE
+UPSERT
+DELETE
+
+state.apps()				-> GET /[coll]
+state.apps['id'] = map		-> POST /[coll] { id: 'id', data: map }
+state.apps += map   		-> POST /[coll] map
+
+state.apps['id']()			-> GET /[coll]/id
+state.apps['id']			-> POST /[coll]/id
+state.apps['id'].delete()	-> DELETE /[coll]/id
+state.apps['id'].update(map) -> POST /[coll]/id map
+state.apps['id'].upsert(map) -> POST /[coll]/id map
+state.apps['id'].start(**kw) -> PATCH /[coll]/id { action: 'start', **kw }
+
+sub = state.apps.connect([], h)
+sub.delete()
+
+AttributeError => coll not found
+KeyError => item not found
+OperationError => action cannot complete
+
+{
+  status: ok,
+  data: {
+  }
+}
+
+state.apps['id'].monitors
+  ...
+
+state.app__by_name
+
+running.start -> noop
+
