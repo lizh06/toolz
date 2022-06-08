@@ -4,7 +4,7 @@ stack of
   skill / block / blade
 
 skill
-  state
+  state, action, reducer
   dependencies
   port / protocol
   80: flask | tornado | fastapi
