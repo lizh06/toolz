@@ -57,6 +57,8 @@ http_stub -> ast
 
 server stub
   RouteHandler
+client stub
+  ReplyHandler
 
 client stub
   api client
