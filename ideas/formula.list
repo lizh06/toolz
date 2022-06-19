@@ -1,0 +1,33 @@
+
+only expression and assignments
+  expressions:
+    a + b
+  assignments:
+    a : int = 5
+
+dynamic import based on mapping + known libs (eg List -> typing)
+
+every id can be overriden!!
+
+return explicit or last assignment / expression
+
+====
+
+a: int
+b: str
+
+a: frame
+
+from x import y
+
+c, d = a + b, a - b
+
+r: Frame = imdw.select()
+
+return {c, a, b}
+
+print(type(a))
+
+mine.foo
+lab.bar
+python.xyz

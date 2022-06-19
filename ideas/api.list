@@ -1,0 +1,114 @@
+fakers
+  https://fakestoreapi.com/
+  https://jsonplaceholder.typicode.com/
+  https://www.instantwebtools.net/fake-rest-api
+
+  https://petstore.swagger.io/v2/swagger.json
+  https://www.activestate.com/blog/top-10-python-packages-for-creating-synthetic-data/
+
+server-side queue
+  sync func + sync api
+  sync func + async api
+  async func + sync api
+  async func + async api
+
+stubmaker: create pyi files
+
+schema: flexible validate / convert
+
+httpbin
+
+apispec: compose openapi in python with plugin for flask, pyramid, marshmallow
+apistar: cli to work with openapi
+
+genson: json example -> json schema
+faker, mimesis: create fake data
+
+tenacity
+api-client
+api-client-pydantic
+
+json parser
+  orjson, rapidjson, ujson
+  tokenize
+
+json str -> object
+  pydantic
+
+json dict[str,str] -> object
+  schema
+
+object -> validate
+  jsonschema, nvelope
+
+datamodel-code-generator
+  openapi, json schema -> pydantic
+  
+apiclient-pydantic-generator
+fastapi-code-generator
+
+ast -> local
+ast -> http_client
+  requests
+
+http_stub -> ast
+  flask blueprint
+  tornado handlers
+
+server stub
+  RouteHandler
+
+client stub
+  api client
+  requests
+  socket
+
+state.apps[]
+
+GET_APPS
+
+[COLL]
+  GET
+  INSERT
+  UPSERT
+
+[ITEM]
+  GET
+  DELETE
+
+INSERT
+UPDATE
+UPSERT
+DELETE
+
+state.apps()				-> GET /[coll]
+state.apps['id'] = map		-> POST /[coll] { id: 'id', data: map }
+state.apps += map   		-> POST /[coll] map
+
+state.apps['id']()			-> GET /[coll]/id
+state.apps['id']			-> POST /[coll]/id
+state.apps['id'].delete()	-> DELETE /[coll]/id
+state.apps['id'].update(map) -> POST /[coll]/id map
+state.apps['id'].upsert(map) -> POST /[coll]/id map
+state.apps['id'].start(**kw) -> PATCH /[coll]/id { action: 'start', **kw }
+
+sub = state.apps.connect([], h)
+sub.delete()
+
+AttributeError => coll not found
+KeyError => item not found
+OperationError => action cannot complete
+
+{
+  status: ok,
+  data: {
+  }
+}
+
+state.apps['id'].monitors
+  ...
+
+state.app__by_name
+
+running.start -> noop
+

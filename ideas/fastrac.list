@@ -1,0 +1,14 @@
+inputs:
+  list of tasks, task_template(params) -> task
+  name, description, jira?, days, start, deps
+  for each run, add started / ended
+
+  todo is a subclass of task for human
+
+  epic -> project
+
+reporting
+  utilization view
+    resource, date, working on items
+  project view
+  team velocity (github checking widgets)
