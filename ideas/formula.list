@@ -1,4 +1,3 @@
-
 only expression and assignments
   expressions:
     a + b
@@ -10,6 +9,86 @@ dynamic import based on mapping + known libs (eg List -> typing)
 every id can be overriden!!
 
 return explicit or last assignment / expression
+
+run(formula, kernel='')
+
+runner(formula, kernel='bash')
+
+defs
+uses
+
+bash|R|jar
+java -jar {} params
+
+rambda.Runner
+
+rambda.Function
+
+rambda.wrap(x) : wrap a python callable into a rambda.Function
+rambda.formula('a + b')
+rambda.shell('echo $HOME', type='bash', bind='x')
+rambda.shell('some.sh', type='bash')
+rambda.shell('some.R', type='bash')
+rambda.R('<some-r-code>')
+rambda.meta('some.yml:x')
+rambda.symbol(mod.sym) -> :a.b.c:x
+
+'''bash
+echo $HOME
+'''
+
+'''
+echo {a}
+'''
+
+'''R
+
+'''
+
+@rambda.decl
+def myfunc():
+  pass
+
+kernel:
+  formula
+  python
+  bash
+
+run policy:
+  default: both
+  user-only
+  proid-only
+
+rambda.formula('''
+
+''')
+
+dbap = rambda.shell('dbap.sh', params=())
+dbap.sh --params
+dbap.sh --requires
+out>dbname:str,  
+
+dbap.sh --dbname x --len 30d
+
+loader:sh
+loader:r
+
+formula : code:str -> callable
+
+f(input) -> outputs
+
+class Formula:
+  type: str
+  code: str
+  inputs: List[Parameter]
+  outs: List[Output]
+  def __call__(): pass
+
+---- some.yml
+
+x:
+  formula: a + b
+  kernel: 
 
 ====
 
