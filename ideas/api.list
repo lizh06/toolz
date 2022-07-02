@@ -1,3 +1,19 @@
+protobuf
+  https://www.datascienceblog.net/post/programming/essential-protobuf-guide-python/
+    override setuptools.develop command
+    .protobuf format
+
+generators
+  pydantic_to_protobuf
+  pure_protobuf
+  mypy-protobuf
+
+protobuf workflow
+  1. create dataclass / pydantic
+  2. mark as protobuf
+  3. generate proto file
+  4. import_protobuf / create_proto  'dataclass' or 'pydantic'
+
 fakers
   https://fakestoreapi.com/
   https://jsonplaceholder.typicode.com/
