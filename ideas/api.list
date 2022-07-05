@@ -1,3 +1,6 @@
+grpc, thrift, rpyc, pyro4
+
+pyrobuf
 protobuf
   https://www.datascienceblog.net/post/programming/essential-protobuf-guide-python/
     override setuptools.develop command

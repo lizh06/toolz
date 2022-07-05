@@ -4,3 +4,21 @@ importer
 dataclass
   https://medium.com/analytics-and-data/pythons-data-classes-a-data-engineer-s-best-friend-173617ee0941
 
+subprocess
+  bash -l | command streams
+  python shell
+
+json
+  cysimdjson
+    https://github.com/TeskaLabs/cysimdjson
+  pysimdjson
+  msgspec
+    schema, filter down to a subset
+    https://pythonspeed.com/articles/faster-python-json-parsing/
+  orjson: serde dataclass / datetime / numpy / UUID
+
+/usr/bin/time -f '%E %M' <cmd>
+
+jinja
+  jinja2schema:
+    https://stackoverflow.com/questions/8260490/how-to-get-list-of-all-variables-in-jinja-2-templates
