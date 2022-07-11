@@ -22,3 +22,8 @@ json
 jinja
   jinja2schema:
     https://stackoverflow.com/questions/8260490/how-to-get-list-of-all-variables-in-jinja-2-templates
+
+flow tools
+  https://medium.com/@Minyus86/comparison-of-pipeline-workflow-packages-airflow-luigi-gokart-metaflow-kedro-pipelinex-5daf57c17e7
+  https://kapernikov.com/a-comparison-of-data-processing-frameworks/
+  dagster
