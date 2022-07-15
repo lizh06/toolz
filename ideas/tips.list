@@ -27,3 +27,15 @@ flow tools
   https://medium.com/@Minyus86/comparison-of-pipeline-workflow-packages-airflow-luigi-gokart-metaflow-kedro-pipelinex-5daf57c17e7
   https://kapernikov.com/a-comparison-of-data-processing-frameworks/
   dagster
+
+mdx
+
+alloy template
+  alloy.yaml
+  [ui]-dev -> [ui]
+  migrations/
+  models/
+  services/
+  blueprints/
+  v1.py
+

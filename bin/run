@@ -113,6 +113,13 @@ params = vars(par.parse_args(argv[2:]))
 cmd(**params)
 
 # TODO
+#   - meta processing
+#       flask -> json-schema
+#       cli -> ArgumentParser
+#   - group.yaml has commands, services profiles
+#   - runner scopes: app, user, session, request
+#   - func(kids, *, attr1, attr2)
+#   - embedded blade parameter
 #   - support unnamed arg
 #   - cannot callback to underscore args
 #   - extra pass for single letter args
