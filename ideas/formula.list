@@ -1,3 +1,24 @@
+cli-based tools
+
+Evaluation
+  contains meta / metrics
+  result caching
+
+Evaluation can come from
+  1. stored in db
+  2. api queries
+
+QueryContext -> EvalContext
+QueryContext : EvalContext
+
+QueryObject : Evaluation
+
+Query: DataSource, str
+Script: Kernel
+
+* get rid of flask_appbuilder in superset
+* Eval* take sqla.engine as a param if Evaluation is a Query
+
 only expression and assignments
   expressions:
     a + b
