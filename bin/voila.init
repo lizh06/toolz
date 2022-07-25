@@ -1,0 +1,4 @@
+pip install numpy scipy pandas
+pip install ipykernel ipywidgets ipympl
+pip install ipyvolume
+pip install bqplot

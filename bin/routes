@@ -1,0 +1,7 @@
+http POST localhost:8001/api/routes/chp target=http://localhost:7788
+http POST localhost:8001/api/routes/msft target=https://www.microsoft.com
+http POST localhost:8001/api/routes/ss target=http://localhost:5000
+http POST localhost:8001/api/routes/st target=http://localhost:8501
+http POST localhost:8001/api/routes/v target=http://localhost:7700
+
+http localhost:8001/api/routes

@@ -1,0 +1,8 @@
+pip install wheel pillow
+pip install -r requirements/base.txt
+pip install -e .
+superset db upgrade
+superset fab create-admin
+superset init
+superset load-test-users
+superset load-examples
