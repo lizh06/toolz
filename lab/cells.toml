@@ -1,0 +1,17 @@
+[[cells]]
+name = 'abc'
+lang = 'python'
+code = '''
+a: int = 5
+print('hello')
+return 5
+'''
+
+[[cells]]
+lang = 'cmd'
+code = 'ls'
+out = '$HOME'
+
+[[cells]]
+lang = 'shell'
+code = 'which ls; ls -l'

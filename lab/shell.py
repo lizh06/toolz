@@ -1,6 +1,19 @@
 import re
-from subprocess import Popen, PIPE
+from subprocess import PIPE, Popen, run
 from select import select
+
+class Blade:
+    def __init__(self): self._ctx = {}
+    ctx = property(lambda a: a._ctx)
+    def start(self, **config): pass
+    def shutdown(self): pass
+
+def _read(fd, num):
+    s = fd.read1().decode()
+    # print('read', num, s)
+    return s
+
+_EOC_RE = re.compile('-= (\d+) =-$')
 
 from jinja2 import Template
 from jinja2schema import infer
@@ -10,10 +23,6 @@ class Context: pass
 class Formula: pass
 class Cell: pass
 class Book: pass
-
-class Blade: pass
-class Bash(Blade):
-    pass
 
 env = {}
 blades = {}
@@ -31,13 +40,6 @@ def ctx_run_next():
 def create_blade(kind):
     if kind == 'bash':
         blades['bash'] = Bash(env)
-
-EOC = re.compile('-= (\d+) =-$')
-
-def _read(fd, num):
-    s = fd.read1().decode()
-    # print('read', num, s)
-    return s
 
 def bash_blade():
     proc = Popen(['/bin/bash', '-l'], stdout=PIPE, stderr=PIPE, stdin=PIPE)
@@ -59,7 +61,7 @@ def bash_blade():
             for fd in rds:
                 i = fds.index(fd)
                 s = _read(fd, i)
-                m = EOC.search(s)
+                m = _EOC_RE.search(s)
                 if m:
                     s = s[:m.start()]
                     outs[0] = int(m.group(1))
