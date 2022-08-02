@@ -1,0 +1,55 @@
+[xyz]
+name = 'xyz'
+title = 'Title for xyz form'
+type = 'requests'
+code = '''
+GET {{url}}
+'''
+
+[[xyz.inputs]]
+name = 'p1'
+type = 'int'
+
+# p1 = 'int'
+# p2 = 'string'
+
+[xyz.result]
+rc = '{status}'
+out = '{body}'
+
+[form2]
+name = 'form2'
+type = 'python'
+code = '''
+print('hi')
+'''
+
+[[form2.inputs]]
+p3 = 2
+
+[[form2.inputs]]
+
+[form2.inputs.p4]
+type = 'int'
+default = 5
+
+[form3]
+type = 'script'
+code = '''
+module load dbau/dbap
+dbap help
+'''
+
+# POST /forms/xyz/{args.p1}
+
+# {
+# 	x: {args.p1}
+# 	y: {args.p2}
+# }
+
+# POST /forms/xyz
+
+# {
+# 	x: {args.p1}
+# 	y: {args.p2}
+# }

@@ -1,5 +1,16 @@
+module = 'test.basic'
+
+[[cells]]
+lang = 'python'
+code = '''
+name: str = 'zheng'
+print(f'hello, {name}')
+return name
+'''
+
 [[cells]]
 name = 'abc'
+# default lang is python
 lang = 'python'
 code = '''
 a: int = 5
@@ -7,11 +18,16 @@ print('hello')
 return 5
 '''
 
+
 [[cells]]
 lang = 'cmd'
 code = 'ls'
-out = '$HOME'
 
 [[cells]]
 lang = 'shell'
-code = 'which ls; ls -l'
+code = 'which ls; ls -l xyz'
+env = 'HOME RUN_PATH'
+
+[[cells]]
+code = 'print("hi")'
+
