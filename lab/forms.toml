@@ -1,7 +1,10 @@
+module = 'abc'
+import = ['a', 'b', 'c']
+
 [xyz]
 name = 'xyz'
 title = 'Title for xyz form'
-type = 'requests'
+type = 'api'
 code = '''
 GET {{url}}
 '''
@@ -39,6 +42,14 @@ code = '''
 module load dbau/dbap
 dbap help
 '''
+
+[form4]
+type = 'sql'
+source = ''
+
+[form5]
+type = 'sql'
+source = ''
 
 # POST /forms/xyz/{args.p1}
 

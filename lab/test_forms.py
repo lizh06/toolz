@@ -4,9 +4,13 @@ from jinja2schema import infer
 if __name__ == '__main__':
 
     import tomli
+    import yaml
 
-    with open('forms.toml', 'rb') as f:
-        forms = tomli.load(f)
+    with open('forms.yaml', 'rb') as f:
+        forms = yaml.safe_load(f)
+
+    # with open('forms.toml', 'rb') as f:
+    #     forms = tomli.load(f)
 
     print(forms)
 

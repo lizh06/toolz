@@ -12,3 +12,34 @@ reporting
     resource, date, working on items
   project view
   team velocity (github checking widgets)
+
+db view of schema + tag-based modeling
+
+functions tables
+  currying
+  refactor
+
+web notifications
+
+task queue
+
+reactive tree
+
+  a = ctx.create_signal()
+
+  @signal
+  def foo():
+    c = a() + b()
+    return c
+
+  def print_out():
+    print('entered')
+    print(f'{foo()}')
+
+  ctx.effect(print_out)
+
+----
+
+igor
+  dataset spec
+    columns, alignment (optional), transforms

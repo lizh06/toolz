@@ -1,3 +1,94 @@
+Kernel.run is a facade of underlying blades
+  Kernel.run([cells])
+  Kernel.only([cells])
+
+Cell is a runnable unit
+  src -> cell (validate lang, type, etc)
+  cell = Kernel.cell(src)
+
+Cell tracks dependencies
+  cell.run(context_override)  <- cell and precedents
+  cell.only(context_override) <- only this cell
+
+a = Actor.create('http://')
+a = Kernel()
+
+Context.use('var1')
+Context.define('var1')
+Context.get('var1')
+Context.set('var1')
+Context.env
+
+agent
+
+actor <-> kernel
+  how are skillset configured?
+  CRUD skills
+  a += skill_data
+  a -= skill_name
+  del a.skill_name
+  a['opname'] = a.skill(args)
+  a.skills -> [skill@ver]
+  a['var-name'] -> data
+  a.table_select(schema, table, server='IMDW') -> yes/no, message
+  a.sql_check('select * from something', **params) -> yes/no, message
+  a.sql_check('select * from something', source='IMDW', **params) -> yes/no, message
+  a.dz_check('msci/usfast/covariance') -> yes/no, message
+  a.thumbnail('http://website') -> image
+  a.run('skill-name', **params) -> results
+  # notebook skill actions: start / stop / suspend / resume
+  a.start('notebook', type='viola', streams='ioe', **params) -> pid
+  a.stop('')
+
+  a.skill is the operator of 'setup' skill
+
+'skill' is operator -> setup
+dw is operator -> db server=IMDW
+py is operator -> python skill
+
+a = actor('http://')
+a.skill(config)
+a.dw.can_select('schema', 'table')
+
+process skill: create, start, stop process
+monitor skill: skills to keep process running
+monitor skill -> process skill
+
+a.process.start
+a.monitor.scale
+
+class Operator:
+  def template(self):
+    pass
+  def __call__(self):
+    pass
+
+a.thumb(args) -> image
+a.thumb.form(a=1) -> thumb_op
+thumb_op
+
+class Status:
+  code: ok / error
+  message: ''
+
+actor, skill, operator/template, form, args
+actor role: master, leader, worker
+actor login, process id, links
+
+actor can be
+  notebook
+
+actor.local
+actor.shell
+actor.setup(machine, user)
+  install, uninstall
+  start, stop, kill
+  install foo.zip
+  uninstall foo.zip
+
+Command
+Service
+
 cli-based tools
 
 Evaluation
