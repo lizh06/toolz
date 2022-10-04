@@ -14,15 +14,31 @@ def caller():
 # item
 # tag: proxy
 
-def effect(f, name=None, queue=None):
+def effect(f, name=None):
     # wraps f
-    def run():
+    def run(queue=None):
         # cleanup
         stack.append(run)
         try: f()
         finally: stack.pop()
     # who run?
-    run()
+    return run
+
+class Memo:
+    def __init__(self, f):
+        self.state = None
+        self.listeners = set()
+        def run():
+            stack.append(run)
+            try: self.state = f()
+            finally: stack.pop()
+            for l in self.listeners:
+                l()
+        run()
+    def __call__(self):
+        l = caller()
+        if l: self.listeners.add(l)
+        return self.state
 
 def memo(f):
     state, listeners = [None], set()
@@ -30,7 +46,7 @@ def memo(f):
         l = caller()
         if l: listeners.add(l)
         return state[0]
-    def run():
+    def run(queue=None):
         stack.append(run)
         try: state[0] = f()
         finally: stack.pop()
@@ -38,7 +54,21 @@ def memo(f):
     run()
     return get
 
-def signal(value):
+class Signal:
+    def __init__(self, value):
+        self.state = value
+        self.listeners = set()
+    def __call__(self):
+        l = caller()
+        if l: self.listeners.add(l)
+        return self.state
+    def set(self, value):
+        self.state = value
+        for l in self.listeners: l()
+
+# only change
+# history length
+def signal(value, diff=None):
     state, listeners = [value], set()
     def get():
         l = caller()
@@ -47,5 +77,6 @@ def signal(value):
     def put(value):
         state[0] = value
         for l in listeners: l()
-    return get, put
+    get.set = put
+    return get
 
