@@ -3,5 +3,9 @@ chp
   spnego, forward back
   permission
 
+code.db
 
+gnu parallel replacement
+
+zmap -from <what> -to barrier command ...
 

@@ -80,3 +80,6 @@ def signal(value, diff=None):
     get.set = put
     return get
 
+# state -> changes
+# with debounce
+
