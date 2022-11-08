@@ -5,5 +5,12 @@ if [ ! -d "$venv/$1" ]; then
   cd $venv && python3 -m venv $1 && echo ok
 fi && source $venv/$1/bin/activate &&
 echo -n "* updating packages .. " &&
-outdated=$(pip list -o|tail -n+3|cut -f1 -d' '|tr '\n' ' ') &&
-[ -z "$outdated" ] && echo none || (echo $outdated && pip install $outdated wheel)
+extra=$(pip list|tail -n+3|cut -f1 -d' '|grep wheel) &&
+if [ -z "$extra" ]; then
+  extra=wheel
+else
+  extra=
+fi &&
+todo=$(pip list -o|tail -n+3|cut -f1 -d' '|tr '\n' ' ') &&
+todo=$(echo $todo $extra|uniqa) &&
+[ -z "$todo" ] && echo none || (echo $todo && pip install $todo)
