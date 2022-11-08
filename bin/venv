@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -d "$venv/$1" ]; then
+  echo -n "* new venv at '$venv/$1' .. " &&
+  cd $venv && python3 -m venv $1 && echo ok
+fi && source $venv/$1/bin/activate &&
+echo -n "* updating packages .. " &&
+outdated=$(pip list -o|tail -n+3|cut -f1 -d' '|tr '\n' ' ') &&
+[ -z "$outdated" ] && echo none || (echo $outdated && pip install $outdated wheel)

@@ -3,9 +3,57 @@ chp
   spnego, forward back
   permission
 
+job progress manager using 'rich'
+pip use rich for it's progress
+
+vscode quick-edit
+  move text down
+  multi edit
+
 code.db
+  use doit!
+  python code browser first
+  test watcher
+  c/c++, rust, go, python
+  additive meta ETL: source, build, binary
+  [boot] -> fileset -> [infer] -> more fileset
+  do you want to make a package? bi-partite graph
+  rules
+    folders with
+      __init__.py setup.py
+      package.json
+      include, src, lib
+      src/java, gradle
+  info
+    callables
+
+alloy is a set of run command
+
+buildout config
+  alloy.conf
+  software defaults + recipe template (alloy recipe)
+  recipe is data + callable action
+  ${scope:varname}
+  depends on: thing and recipe
 
 gnu parallel replacement
+  zmap -from <what> -to barrier command ...
 
-zmap -from <what> -to barrier command ...
+storage engine
+  sqlite lsm + vedis + postgres engine + duckdb
+  fdw for arrow
+
+  stmt -> query
+
+  select(table('foo'), column('a').as('')) -> stmt
+  delete()
+  update()
+  op = insert(table('x'), column('foo'))
+  op(['a', 'b'])
+
+https://linuxhandbook.com/check-if-systemd/
+
+tableau use axis & field for display
+tableau prep:
+  join: inner, outer
 

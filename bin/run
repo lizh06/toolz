@@ -5,8 +5,9 @@ import sys
 
 dist = Path(__file__).parent.parent
 sys.path.insert(0, str(dist / 'lib'))
-from utilz import activate_any, uniqa
-activate_any(dist, ['venv-local', 'venv'])
+
+from utilz import activate_first, sys_path_prepend, let, uniqa
+activate_first(dist, ['venv-local', 'venv'])
 
 def _command(name, conf, group=None):
     prog = ('' if group is None else f'{group} ') + name
@@ -34,26 +35,16 @@ def find_sym(mod, names):
         s = getattr(mod, n, None)
         if s: return s
 
-from inspect import signature, Parameter
-from argparse import ArgumentParser
-from importlib import import_module
-import yaml
-
-argv = sys.argv[1:]
-gname = argv[0]
-cname = argv[1]
-
-temp = os.environ.get('temp','')
-dirs = list(uniqa([''] + os.environ.get('RUN_PATH','').split(os.pathsep) + [temp]))
-# print(dirs); quit()
-
-RESERVED = 'ctx'.split()
+_FIXTURES = 'ctx'.split()
 
 def reflect(f):
     s = signature(f)
+    uses = []
     params, letters = [], set()
     for p in s.parameters.values():
-        if p.name in RESERVED: continue
+        if p.name in _FIXTURES:
+            uses.append(p.name)
+            continue
         annot = p.annotation
         if annot is not Parameter.empty and isinstance(annot, type):
             t = annot
@@ -79,17 +70,38 @@ def reflect(f):
             a['default'] = p.default
     return params
 
+from argparse import ArgumentParser
+from configparser import ConfigParser
+from inspect import signature, Parameter
+from importlib import import_module
+import yaml
+
+argv = sys.argv[1:]
+gname = argv[0]
+cname = argv[1]
+
+bases = let(os.environ.get('RUN_PATH'), lambda rpath:
+        let(rpath.split(os.pathsep) if rpath else [], lambda a:
+            a + ['$HOME', dist]))
+bases = list(uniqa(Path(os.path.expandvars(os.path.expanduser(x))) for x in bases))
+cwd = let(Path(''), lambda x: x if x in bases else let(bases.insert(0,x), lambda _: x))
+
 mod, seen = None, set()
-for d in dirs:
-    d = d or os.getcwd()
-    if d in seen: continue
-    seen.add(d)
-    sys.path.insert(0, d)
-    try:
-        mod = import_module(f'cmds.{gname}')
-        break
-    except: pass
-    sys.path.pop(0)
+for base in bases:
+    if not base.exists(): continue
+    with sys_path_prepend(base):
+        try:
+            mod = import_module(f'run.{gname}')
+            os.chdir(base)
+            break
+        except: pass
+
+    # run/conf or run.conf
+    # conf = base / 'run.conf'
+    # if conf.exists():
+    #     config = ConfigParser()
+    #     config.read(conf)
+    #     print('conf:', config.sections())
 
 if mod is None:
     print('no command group', gname)
@@ -124,6 +136,8 @@ cmd(**params)
 #   - cannot callback to underscore args
 #   - extra pass for single letter args
 #   - support str|int|bool|List inference on signature
+#       bool -> action=store_true
+#       [] -> action=append
 #   - task.yml override task.py
 #   - 'well-known' args for group
 #   - 'run {group}' show all commands in {group}

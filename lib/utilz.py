@@ -26,7 +26,7 @@ def activate(base):
             sys.path.remove(item)
     sys.path[:0] = new_sys_path
 
-def activate_any(base, venvs):
+def activate_first(base, venvs):
     for v in venvs:
         d = base / v
         if d.exists():
@@ -40,13 +40,27 @@ def sys_path_scope():
     if changed:
         sys.path[:] = saved
 
-let = lambda *va: va[-1](*va[:-1])
+@contextlib.contextmanager
+def sys_path_prepend(changes):
+    if isinstance(changes, Path):
+        changes = [str(changes)]
+    elif isinstance(changes, str):
+        changes = [changes]
+    saved = list(sys.path)
+    # print(changes + saved)
+    sys.path[:] = changes + saved
+    yield
+    sys.path[:] = saved
 
-def uniqa(i, key=None):
+def uniqa(i, key=None, return_none=False, return_empty=False):
     key = key or repr
     seen = set()
     for x in i:
+        if x is None and not return_none: continue
+        if not x and not return_empty: continue
         k = key(x)
         if k not in seen:
             seen.add(k)
             yield x
+
+let = lambda *va: va[-1](*va[:-1])
