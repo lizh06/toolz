@@ -7,6 +7,15 @@ inputs:
 
   epic -> project
 
+project timeline
+people
+task = change
+is it done? acceptance criteria
+  integration test
+  start frontend
+  start backend
+  debug spin up
+
 reporting
   utilization view
     resource, date, working on items

@@ -10,3 +10,4 @@ skills
   port / protocol
   80: flask | tornado | fastapi
 
+agent is an invocation context for user or system in a multi-user connection (aka session)

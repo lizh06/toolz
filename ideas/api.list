@@ -1,3 +1,5 @@
+marshmallow + sqlalchemy
+
 grpc, thrift, rpyc, pyro4
 
 pyrobuf
