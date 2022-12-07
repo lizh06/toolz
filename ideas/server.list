@@ -1,4 +1,4 @@
-
+anyio
 asyncio-gevent
 
 stack of
@@ -9,5 +9,76 @@ skills
   dependencies
   port / protocol
   80: flask | tornado | fastapi
+    wsgi | tornado | asgi
 
 agent is an invocation context for user or system in a multi-user connection (aka session)
+
+https://constructs.dev/
+
+rpc
+  tinyrpc
+  zerorpc
+  vd2org/arpc
+
+state machine
+  transitions / sqlalchemy-state-machine
+  jtushman/state_machine: orm support
+    python-state-machine
+    events have 'before' / 'after' hooks
+  kaliklipper/infinite-state-machine: actions in db
+  automat
+  fgmacedo/python-statemachine
+    autogen: is_<state>
+    define transitions using operators
+    inherit MachineMixin to mix-in machine by name
+    transition macros: cycle = green.to(yellow) | yellow.to(red) | red.to(green)
+    how about rollback to original state? might not be possible!
+  alysivji/finite-state-machine
+    async and sync transition + conditions
+    boolean field as machine
+    generate mermaid md can be view in https://mermaid-js.github.io/mermaid-live-editor
+  xstate-python: impl
+  mriehl/fysom: impl
+  cmaugg/pystatemachine: syntax
+  jnmclarty/rrsm: syntax
+  insha/Flux-Python: syntax
+  ketan86/ftsm: impl
+  https://gitlab.com/yuriylygin/state-engine: impl, syntax
+  beregond/super_state_machine: syntax, named transition
+    auto bool, eg 'locked' -> 'is_locked'
+    property machine
+    apropos state name dispatch (need this??)
+    allow set_'state' explicit transitions
+      and method (named transitions)
+  Shuttl-Tech/simple-state-machine
+  barnybug-archive/finite: yaml syntax
+  ramwin/state-machine: redis backend
+  dralm3ida/finite-state-machine
+
+  impl
+    https://www.codementor.io/@arpitbhayani/building-finite-state-machines-with-python-coroutines-15nk03eh9l
+
+  -
+    a. check transition is allowed
+    b. guard to validate event object: { type: 'PUT-IN-BEANS', count: 1e6 }
+    c. action func trigger effect(s)
+    d. action func wait and process effect status
+    e. ret(ok) -> complete tran, or ret(failed) -> no tran + state.error_fn(error message)
+    f. if transitioned, call leave(source), call enter(target)
+  - what if transition hung? eg start: ready -> running but start effect not done
+  - how to deal with in-transit states?
+      if has pending, then pending need to allow start, and handle as no-op
+      if no pending, how to track effect pending?
+  - define from any language
+  - complex states ala state charts
+  - support action and effect
+  - context can be serialized to json
+  - inject into existing object ala 'transitions'
+  - relocation, pool, proxy
+  - master, server, worker, runner
+  - cluster, service, reducer
+  - client
+
+dependency injection
+  rodi
+

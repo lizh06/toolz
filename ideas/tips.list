@@ -9,6 +9,8 @@ cx-freeze
 figma design -> tkinter
   proxlight
 
+https://plantweb.readthedocs.io/
+
 importer
   https://docs.python.org/3/library/importlib.html#setting-up-an-importer
 

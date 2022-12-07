@@ -1,5 +1,9 @@
 marshmallow + sqlalchemy
 
+http://klen.github.io/py-frameworks-bench/
+Neoteroi/blacksheep, klen/muffin, falcon
+Neoteroi/rodi
+
 grpc, thrift, rpyc, pyro4
 
 pyrobuf
@@ -26,6 +30,11 @@ fakers
 
   https://petstore.swagger.io/v2/swagger.json
   https://www.activestate.com/blog/top-10-python-packages-for-creating-synthetic-data/
+  faker, mimesis: create fake data
+  hypothesis
+
+mixer
+  bridge fakers to api/orm frameworks
 
 server-side queue
   sync func + sync api
@@ -37,13 +46,16 @@ stubmaker: create pyi files
 
 schema: flexible validate / convert
 
+orm: sqlalchemy, piccolo, peewee
+sqlmodel
+sqlglot
+
 httpbin
 
 apispec: compose openapi in python with plugin for flask, pyramid, marshmallow
 apistar: cli to work with openapi
 
 genson: json example -> json schema
-faker, mimesis: create fake data
 
 tenacity
 api-client

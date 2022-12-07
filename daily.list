@@ -1,3 +1,9 @@
+cache
+  marshmallow
+  redisworks
+  redisjson
+  subredis
+
 edgedb: graph relational db
 cube.js at cube.dev
 
@@ -60,3 +66,7 @@ tableau use axis & field for display
 tableau prep:
   join: inner, outer
 
+pip update command
+  how to add new command to pip
+  update outdated
+  with strict version (conda mode)
