@@ -1,5 +1,15 @@
 marshmallow + sqlalchemy
 
+java:
+  https://talvi.net/posts/a-brief-overview-of-python-java-bridges-in-2020.html
+  LeeKamentsky/python-javabridge
+  ninia/jep
+  kivy/pyjnius
+  karpierz/jni
+  jpy-consortium/jpy
+  jpype
+  py4j
+
 http://klen.github.io/py-frameworks-bench/
 Neoteroi/blacksheep, klen/muffin, falcon
 Neoteroi/rodi
@@ -32,9 +42,8 @@ fakers
   https://www.activestate.com/blog/top-10-python-packages-for-creating-synthetic-data/
   faker, mimesis: create fake data
   hypothesis
-
-mixer
-  bridge fakers to api/orm frameworks
+  klen/mixer
+    bridge fakers to api/orm frameworks
 
 server-side queue
   sync func + sync api

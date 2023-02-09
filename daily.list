@@ -1,8 +1,278 @@
+mosaic|segment|fragment|piece|chunk
+
+project -> module
+src -> deployment
+
+python spark
+  http://pages.cpsc.ucalgary.ca/~aycock/spark/
+  unpyc
+    https://github.com/andrew-tavera/unpyc37/
+    https://github.com/rocky/python-decompile3
+    https://github.com/extremecoders-re/PjOrion-Deobfuscator
+    https://github.com/rocky/x-python
+
+
+json schema infer
+  https://stackoverflow.com/questions/7341537/tool-to-generate-json-schema-from-json-data
+  genson
+
+writing parquet
+msgspec
+annotation can be function
+coffee -> lua
+
+lupa / lunastic -> serve redis data as tables
+embed lupa inside redis
+webdis: http for redis
+
+isolate for arbitrary code execution
+  https://github.com/ioi/isolate
+  used by vlang playground
+
+vlang
+  TODO:
+    type check: need better type inference during for lambda
+  https://stackoverflow.com/questions/34464146/the-idiomatic-way-to-implement-generators-yield-in-golang-for-recursive-functi
+  chan <- ->
+    tokenizer coroutine
+    parser coroutine
+    example from golang
+  llvm ir
+  wasm ir
+
+  without global var?
+  v doc stack & heap about when stack alloc
+
+  v from command
+    how does c2v work
+      use clang binary to generate AST
+    how does py2v work
+      python file -> ast json -> v file
+    how does go2v work
+      ast_getter.go
+
+  v db
+    raft
+    etcd
+    cockroach
+    duckdb
+
+  v orm
+    https://github.com/d-tsuji/awesome-go-orms
+
+  v ast
+  v fmt
+  arrow, parquet
+  msgpack
+  v has msgspec like mapping to json already. validation?
+  v redis
+  vsql, vdd, vlmdb
+  orm: how does it work?
+  compiler flags, attribute
+  vweb: how does comptime attr works?
+  ctags:
+    https://github.com/jstemmer/gotags.git
+  replace: https://github.com/piranha/goreplace.git
+  grep: https://github.com/svent/sift.git
+  awk:
+    https://benhoyt.com/writings/awkgo/
+    https://github.com/benhoyt/goawk.git
+    https://github.com/spakin/awk.git
+  sed:
+    https://github.com/zkry/go-sed.git
+    https://github.com/carterpeel/gosed.git
+    https://github.com/rwtodd/Go.Sed.git
+  parallel & xargs
+    https://github.com/mylanconnolly/parallel.git
+    https://github.com/brentp/gargs.git
+    https://github.com/woorui/xargo.git
+    https://github.com/shenwei356/rush.git
+  https://github.com/go-python/gopy
+  https://github.com/go-python/cpy3
+  https://github.com/go-python/gpython
+
+  lark + spark -> vlang
+    asdl -> 
+    https://github.com/BlankSpruce/gersemi
+      cmake parser that use lark
+  lark goodies
+    builtin tokens
+    auto tree (if don't specify node types)
+      Token(TOK_TYPE, "tok-value")
+      Tree(NODE_TYPE, [Token(..), Token(..), ..])
+    interesting embedding
+      https://github.com/alecthomas/participle/blob/master/_examples/sql/main.go
+
+  https://github.com/rocky/python-spark.git
+  https://github.com/tobymao/sqlglot.git
+
+  nearly js
+    parsing chart
+    vsql has an vlang generator from earley grammar
+  https://github.com/elliotchance/vsql.git
+
+  vlang notes
+    https://github.com/lydiandy/vlang_note
+
+  c2go
+    clang preprocess -> one big file pp.c
+    we should
+      read makefile
+      generate probe files for check eg ifdef XYZ_MACRO -> HAS__XYZ_MACRO
+
+  dingo: type safe injection
+  https://github.com/alicebob/miniredis
+  https://github.com/elliotchance/postgresql-partitioning
+  https://github.com/elliotchance/sql2mq
+  https://github.com/patrickpissurno/vredis
+  
+  vim -> vlang
+    read neovim for core
+  scintilla -> vlang
+
+  vim vlang plugin?
+
+  https://github.com/Larpon/vee.git
+  https://github.com/Itay2805/Vork.git
+  https://github.com/lemoncmd/vcc.git
+  https://github.com/rui314/chibicc.git
+
+  lift c -> v
+    discover stuff store info
+    analyze: lib, exe, test
+    report problems
+    user query / inspect
+    define refactor rules
+    transform
+
+  examples/term.ui
+    render changes only
+    split-state ui framework
+
+  https://github.com/baztian/jaydebeapi.git
+  jpype1
+
+  https://github.com/Larpon/jni.git
+
+plugin
+  https://pypi.org/project/Yapsy/
+  https://github.com/daltonmatos/plugnplay
+  https://trac.edgewall.org/browser/trunk/trac/core.py
+  https://trac-hacks.org/browser/announcerplugin/trunk/announcer
+  https://trac.edgewall.org/wiki/TracDev
+
+  https://github.com/cantora/aug.git
+
+pycc
+  https://github.com/cantora/pyc.git
+  https://github.com/c3lang/c3c.git
+
+end-user experience
+  is vscode/git in stash personal repo
+  mydb:
+    schema <-> ldap
+    user-id <-> personal
+
+    connect as myself
+    share with others
+
+ui
+  react hooks
+    usehooks.com
+    usehooks-ts.com
+  ladle/storybook
+  ladle: already using vite
+  playwright: visual testing?
+  turborepo
+  pnpm
+  vite
+  ?solidjs
+
+package.json
+  exports
+  bin
+  types
+
+weboot.js
+  springboot-like
+  base choice:
+    language: coffee, js, ts 
+    package man: npm, pnpm, yarn
+    multi-repo: turbo, lerna
+    bundler: vite/esbuild, webpack, turbopack, parcel
+    builder: esbuild, rollup
+    component: react, solid, vue
+    framework: antd, material
+    formatter: prettier
+    lint: eslint
+    css: unocss, tailwind
+    auto-test: hypothesis
+      api token management
+    ladle for config
+
+extension-point
+
+@vanilla-extract/css
+
+anvil: place to create stuff
+  solid-playground
+    solid-repl
+    diagram repl
+    client render with hydration
+  fabricjs
+  tldraw / excalidraw
+    port to solid-js
+  springyjs
+  https://github.com/hijiangtao/Force-Directed-Layout
+  https://github.com/vasturiano/3d-force-graph
+  three.js two.js
+  cola.js
+  svg.js
+  cytoscape.js
+  fabric.js
+  sigma.js
+  dnd + dock
+  bokeh
+  panel
+
+pradyun/Py2C
+  python -> c++
+  print('hello')
+    => py::print(py::str("hello"))
+    => std::cout << "hello" << endl;
+
 cache
   marshmallow
   redisworks
   redisjson
   subredis
+  https://github.com/BrunoCostaPrado/prisma-postgres-solidjs-redis
+  https://github.com/crazylazylife/superteam-task-manager
+
+transpile
+  shedskin: py -> c++
+  transcrypt: py -> javascript
+    @javascript
+  https://github.com/pyjs/pyjs
+  pyxl3
+    lark to parse
+      <ns:elem-tag {a} this "that" key=something key1="that{a}" key2={that} >
+        {if something: <a
+        {something ? for this or that {
+            hello.world()
+            x.map(a, <a> something </a>)
+            sig()
+            if a < b:
+          }
+        }
+      </>
+      balanced('{', '}')
+      balanced("'''")
+      balanced('"')
+      balanced("'")
+
+import 
+foo_js.py
 
 edgedb: graph relational db
 cube.js at cube.dev
