@@ -3,6 +3,42 @@ mosaic|segment|fragment|piece|chunk
 project -> module
 src -> deployment
 
+kernel = process
+instructions
+context
+
+generic bokeh kernel
+  multiple dashboard
+
+timelines
+  1 mo:
+    chp ->
+      alloy server / root server
+      avatar: 
+        data/consum.something
+        data/proj.data-name
+        dash/proj.dash-name
+      calcite:
+        proj.data-name
+        consum.attrib
+        space.query
+
+    scope resolver
+      consum -> dw, consum
+      proj -> proj
+      my-space -> space
+
+    tableau caching
+    cache definition
+    query endpoint
+      dataset.frame
+      consum.table
+
+one pager
+  0. looking at data
+  1. tableau: my-db: user -> proid
+  2. notebook
+
 python spark
   http://pages.cpsc.ucalgary.ca/~aycock/spark/
   unpyc
@@ -11,6 +47,46 @@ python spark
     https://github.com/extremecoders-re/PjOrion-Deobfuscator
     https://github.com/rocky/x-python
 
+how to represent interceptor / dispatcher
+  @offline '3d'
+  @runas 'user'
+  the_func arg1, arg2
+  set a
+
+  @runas 'system'
+  tran_1 _, a1, 'c'
+  tran_2 _, a2, 'd'
+
+interpretation
+  workflow
+  dashboard
+  template
+    excel, ppt
+    workflow template + binding -> workflow (state)
+      jobs = ['a', 'b']
+      ?emailed = email_user()
+      form = user_fill(emailed)
+  ctx.resolve('a')
+
+entire call tree!
+  user_func1 = run_as('user', func1)
+  t_func2 = task(func2)
+  a = user_func1(b, c)
+  d, e = t_func2(a, 5)
+  Result(a, b, c)
+  proj.v
+
+  stack([run_as('user'), run_as('task'), func(a, b)])
+  run_as('user', func)
+  sql_exec(sql='select ...', db=[])
+  sql_exec(from_='', filter='', select='', join='')
+    sql -> tree
+      if spark
+        gen query func
+      elif from same conn && conn.kind not in ['api']
+        send sql
+      else
+        send to calcite
 
 json schema infer
   https://stackoverflow.com/questions/7341537/tool-to-generate-json-schema-from-json-data
