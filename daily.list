@@ -92,6 +92,31 @@ json schema infer
   https://stackoverflow.com/questions/7341537/tool-to-generate-json-schema-from-json-data
   genson
 
+services
+  redis
+
+  spark
+    spark.master
+    spark.worker
+
+  hive
+    https://cwiki.apache.org/confluence/display/hive/design
+    hive.metastore -> metastore
+    hive.server
+
+  metastore
+    https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+Administration
+    use remote derby as "metastore database"
+    run hiveserver2 as remote "metastore server"
+
+  cassandra
+  zookeeper
+  bookkeeper
+
+  pulsar
+  kafka
+  apacheDS
+
 writing parquet
 msgspec
 annotation can be function
