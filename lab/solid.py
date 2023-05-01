@@ -24,21 +24,31 @@ def effect(f, name=None):
     # who run?
     return run
 
-class Memo:
-    def __init__(self, f):
-        self.state = None
-        self.listeners = set()
+def task(f):
+    def make(*va, **kw):
+        def eff():
+            stack.append(eff)
+            try: f(*va, **kw)
+            finally: stack.pop()
+        eff()
+        # return handle to cancel
+    return make
+
+def mem(f):
+    def make(*va, **kw):
+        state, listeners = [None], set()
+        def get():
+            l = caller()
+            if l: listeners.add(l)
+            return state[0]
         def run():
             stack.append(run)
-            try: self.state = f()
+            try: state[0] = f(*va, **kw)
             finally: stack.pop()
-            for l in self.listeners:
-                l()
+            for l in listeners: l()
         run()
-    def __call__(self):
-        l = caller()
-        if l: self.listeners.add(l)
-        return self.state
+        return get
+    return make
 
 def memo(f):
     state, listeners = [None], set()
@@ -54,21 +64,9 @@ def memo(f):
     run()
     return get
 
-class Signal:
-    def __init__(self, value):
-        self.state = value
-        self.listeners = set()
-    def __call__(self):
-        l = caller()
-        if l: self.listeners.add(l)
-        return self.state
-    def set(self, value):
-        self.state = value
-        for l in self.listeners: l()
-
 # only change
 # history length
-def signal(value, diff=None):
+def slot(value, diff=None):
     state, listeners = [value], set()
     def get():
         l = caller()

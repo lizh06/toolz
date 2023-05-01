@@ -1,15 +1,15 @@
 import inspect
-from f2 import let
+from f8 import let
 
-from solid import effect, memo, signal
+from solid import effect, memo, slot
 
-flag = signal(False)
-base = signal(100)
-count = signal(0)
+flag = slot(False)
+base = slot(100)
+count = slot(0)
 total = memo(lambda: base() + count())
 
-port = signal(6060)
-data_dir = signal('/a/b/c')
+port = slot(6060)
+data_dir = slot('/a/b/c')
 # proc.data_dir()
 # proc.data_dir.put()
 
@@ -23,6 +23,11 @@ data_dir = signal('/a/b/c')
 #   flask
 #   tornado
 
+# @memo
+# def some_func(arg):
+#     pass
+# total = some_func(1)
+
 '''
 port: 6000
 data_dir: /a/b/c
@@ -33,8 +38,8 @@ pid
 status: started, up, stopped, closing, down
 
 warnings
-failed = signal()
-ok = signal()
+failed = slot()
+ok = slot()
 total = memo(lambda: ok() + failed())
 
 json schema
@@ -68,9 +73,6 @@ json schema
             b: int
         all_required
 '''
-
-def test_a():
-    pass
 
 conf = '''
 process: echo-service

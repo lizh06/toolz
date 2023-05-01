@@ -1,0 +1,11 @@
+# fk-only, no links
+#
+models:
+- name: Table
+  fields:
+  - name: name
+- name: Column
+  fields:
+  - name: name
+  - name: tab_id
+    to: Table

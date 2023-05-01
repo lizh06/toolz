@@ -1,3 +1,194 @@
+[agent / manager / mc]
+client / request count
+queue
+
+logging-name: apscheduler
+
+worker pool
+  alloc machine / container
+  spin up worker(s)
+  start local cache / ipc
+  start consumer
+
+jinja2
+  custom context (stack of dict)
+  resolver function
+
+:mach = prof(user='z', size='>5g', gpu=True)
+
+mach:x = mach:!cmd -a arg1 arg2
+user:t = proj.a(a, b)
+!foo.jar:x
+
+file('') > x
+t.out > x
+
+profile
+  region:
+  size:
+  gpu:
+  user:
+  svc:
+
+x.down:
+  restart
+
+x.up:
+  proj.b d
+
+  cmd profile.json
+
+  arguments:
+    O: int
+    J: bool
+  events:
+    started: <pattern>
+    stoped: <pattern>
+    request: <pattern>
+    init(pid) / up / down / req
+    {proc,svc}
+    proc.up
+    proc.down
+    req
+    req.failed
+    req.ok
+    login
+    login.ok
+    login.failed
+      id:
+      who:
+      time:
+
+[]
+intake / fsspec / smart_open
+mlflow / dvc / kedro
+petl
+
+dask-ssh for multi machine deploy
+
+
+dial signature
+  Call -> Plan
+  dial Module: m = dial.wrap(mod)
+  dial Operator
+  Operator --call-> Operator --call-> Task (like airflow)
+  dial.run or Task.run (like dask)
+
+  composition:
+    task1 and task2
+      op1.task() and op2.task() -> Task
+    task1 or task2
+
+  multi(1, 2) -> Task
+  multi.call([], {}, **options) -> Task
+
+  add(1, 2).run() <-> +add(1, 2)
+  add.call((1, 2), {}, **options).run()
+    <->
+  +add.call((1, 2), {}, **options)
+  dial.Operator <=> celery.Task
+  dial.Call <=> celery.Signature
+
+  inspect return type
+  frame type
+
+  lazy create of Task
+
+  dial is runtime lib
+  tea create dial config from db conf
+
+  cf. doit uses inspect for signature: doit.action.BaseAction
+
+dial provider
+  Connection => Hook
+  Sensor, Operator
+
+Hook (db hook)
+  refer to connection config
+  a private interface like an SPI
+  can return an underlying connection (opened)
+  standard objects are built on top of it: like, sensor, task, result
+
+generic task queue
+  1. mark func as task: inspect sig, group / chord
+  1.1 mc node manager
+  2. compose tasks into dag
+  3. executor:
+      dispatcher
+      consumer
+  4. cluster management
+      cluster
+      master: node
+      worker: node, process
+  run profile: user, venv
+
+  airflow: DAG default params
+  airflow: @task.{docker,sensor,kube} are operators, task() -> dag node
+  airflow: BaseTrigger (time), db
+  airflow: add_one.expand([1, 2, 3]) -> [add_one(1), add_one(2), add_one(3)]
+  airflow: TaskFlow API can use venv
+
+  celery: AsyncResult
+  celery: app.send_task, app.subclass_with_self('class')
+  celery: Task can be curried
+
+task queue
+  celery worker
+  dask distributed: modeled after concurrent.futures
+  gevent works with concurrent.futures
+  zerorpc as task queue: zmq <-> rabbitmq
+
+expression dis/decomp
+  pony
+  geniusql
+
+  let(expr, lambda x: 1)
+  select(p for p in Product if p.col == 'name') => filter map reduce
+  (p for q in P for p in q)
+
+supervisor.conf
+  command
+  Config.from_object
+  Config.from_database
+
+xmap
+  taskmap
+  hookmap
+  datamap
+    source: tea:789
+
+  xmap.get() ->
+  xmap.call('a.select',
+  xmap.get('xyz')
+  xmap.xyz.select()
+
+mc / chp extension model
+  runner
+    agent: start / stop, metrics, beat
+    scope: route, token / user, request
+      hash key
+    dynamic port
+    route stats
+    http: query, flask, bokeh, notebook, voila
+    custom: hive, redis, postgres, spark, zk, bk
+
+dragonfly deploy
+  needs: libunwind-dev, libpfm4-dev
+  repo (ok)
+    gmod update --init
+    cmake -GNinja -DCMAKE_BUILD_TYPE=Release ..
+    ninja test (proactor_test failed)
+  tagged (failed)
+    0.17.0 + helio-0.2.0
+    link helio into dragonfly
+    comment out proactor_stress test in helio
+  how to build redis extensions
+
+can we unify duckdb with dragonfly?
+  duckfly
+
+use cuddle as wire format?
+
 mosaic|segment|fragment|piece|chunk
 
 project -> module
@@ -15,8 +206,8 @@ timelines
     chp ->
       alloy server / root server
       avatar: 
-        data/consum.something
-        data/proj.data-name
+        data/consum.table
+        data/proj.frame-id
         dash/proj.dash-name
       calcite:
         proj.data-name
@@ -88,12 +279,14 @@ entire call tree!
       else
         send to calcite
 
+intake -> dask
+
 json schema infer
   https://stackoverflow.com/questions/7341537/tool-to-generate-json-schema-from-json-data
   genson
 
 services
-  redis
+  redis / dragonfly
 
   spark
     spark.master
@@ -372,7 +565,6 @@ transpile
       balanced('"')
       balanced("'")
 
-import 
 foo_js.py
 
 edgedb: graph relational db
@@ -441,3 +633,32 @@ pip update command
   how to add new command to pip
   update outdated
   with strict version (conda mode)
+
+pyparam: arg parsing returning dict instead of objects
+pipen: a bit like reactivex, channels are pandas.DataFrame
+argx
+cmdy
+datar
+
+asyncio
+  aiojobs
+  aiomonitor
+  aiofiles
+  aioredis
+  aiozmq
+  aiopg
+  aiomysql
+
+https://stackoverflow.com/questions/57730010/python-asyncio-subprocess-write-stdin-and-read-stdout-stderr-continuously
+
+https://stackoverflow.com/questions/46782908/using-multiprocessing-to-handle-socket
+https://stackoverflow.com/questions/72319941/what-do-socket-sol-socket-and-socket-so-reuseaddr-in-python
+https://stackoverflow.com/questions/9436757/how-to-use-a-multiprocessing-manager
+
+job runner
+  hook based
+  on- / off-line
+  client: must have conn, multiple conn, no job store
+  HA client
+  import dial.plugin as p
+  p.func.s(a, b)

@@ -1,0 +1,27 @@
+#
+#
+models:
+- name: Source
+  fields:
+  - name: name
+  - name: token
+  - name: url
+- name: Schema
+  fields:
+  - name: name
+  - name: source_id
+    to: Source
+    nullable: true
+- name: Table
+  fields:
+  - name: id
+    primary_key: true
+  - name: name
+  links:
+  - name: cols
+    back: Column.tab_id
+- name: Column
+  fields:
+  - name: name
+  - name: tab_id
+    to: Table

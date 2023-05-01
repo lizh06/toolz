@@ -1,0 +1,14 @@
+#
+#
+models:
+- name: Table
+  fields:
+  - name: name
+  links:
+  - name: cols
+    fkey: Column
+- name: Column
+  fields:
+  - name: name
+  - name: tab_id
+    to: Table
