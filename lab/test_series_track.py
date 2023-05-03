@@ -51,9 +51,18 @@ class Frame(tuple):
     @property
     def meta(self):
         return self[-1]
+    def find_names(self, cols):
+        res = []
+        for k, info in self.meta.items():
+            _, colinfo = info
+            if colinfo in cols:
+                res.append(colinfo)
+        # TODO should return list of NameVer
+        return res
 
 # meta:
-#     name -> (namever, index, colinfo)
+#   name -> (index, colinfo)
+#   col_id -> (index, colinfo)
 
 def rename_col(from_, to):
     def t(frame):
@@ -70,7 +79,6 @@ def delete_outliers(irrelevant_col_name=None):
         data, meta = frame
         for col in meta.values():
             col.update()
-
         new_meta = meta
 
         # col = meta[name]
